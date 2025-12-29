@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shoutzy</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        flex-direction: column;
+        background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?fit=crop&w=1950&q=80") no-repeat center center/cover;
+        background-size: cover;
+        position: relative;
+    }
+
+    .logo {
+        font-family: 'Pacifico', cursive;
+        font-size: 60px;
+        letter-spacing: 3px;
+        background: linear-gradient(90deg, #00ffe5, #7a5cff, #ff4ecd);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 30px rgba(255,255,255,0.3);
+        margin-bottom: 40px;
+    }
+
+    input {
+        width: 300px;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border: 1px solid rgba(0,0,0,0.3);
+        background: rgba(255,255,255,0.9);
+        color: black;
+        font-size: 14px;
+        outline: none;
+    }
+
+    input::placeholder { color: #555; }
+
+    .login-btn {
+        margin-top: 15px;
+        width: 300px;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(45deg, #00ffe5, #7a5cff, #ff4ecd);
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .login-btn:hover { opacity: 0.85; transform: scale(1.02); }
+
+    .or {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+        font-size: 12px;
+        color: #ccc;
+        width: 300px;
+    }
+
+    .or::before,
+    .or::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #555;
+        margin: 0 10px;
+    }
+
+    .facebook {
+        color: #1877f2;
+        font-weight: 500;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    .forgot {
+        font-size: 12px;
+        color: #333;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    .signup { font-size: 14px; color: black; }
+    .signup span { color: #00ffe5; font-weight: 600; cursor: pointer; }
+
+    .language { position: absolute; bottom: 20px; width: 100%; text-align: center; }
+    select {
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        background: rgba(255,255,255,0.9);
+        color: black;
+        font-weight: 500;
+    }
+</style>
+</head>
+<body>
+
+<div class="logo" id="logo">Shoutzy</div>
+
+<input type="text" id="username" placeholder="Username, phone or email">
+<input type="password" id="password" placeholder="Password">
+<button class="login-btn" id="loginBtn">Log In</button>
+
+<div class="or" id="orText">OR</div>
+
+<div class="facebook" id="fbLogin">Log in with Facebook</div>
+<div class="forgot" id="forgotPwd">Forgot password?</div>
+
+<div class="signup" id="signupText">
+    Don’t have an account? <span id="signupBtn">Sign up</span>
+</div>
+
+<div class="language">
+    <select id="languageSelector">
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="it">Italian</option>
+        <option value="pt">Portuguese</option>
+        <option value="ru">Russian</option>
+        <option value="zh-CN">Chinese (Simplified)</option>
+        <option value="zh-TW">Chinese (Traditional)</option>
+        <option value="ja">Japanese</option>
+        <option value="ko">Korean</option>
+        <option value="ar">Arabic</option>
+        <option value="tr">Turkish</option>
+        <option value="vi">Vietnamese</option>
+        <option value="th">Thai</option>
+        <option value="id">Indonesian</option>
+        <option value="sv">Swedish</option>
+        <option value="nl">Dutch</option>
+        <option value="el">Greek</option>
+        <option value="pl">Polish</option>
+        <option value="he">Hebrew</option>
+        <option value="no">Norwegian</option>
+        <option value="fi">Finnish</option>
+        <option value="da">Danish</option>
+        <option value="cs">Czech</option>
+        <option value="hu">Hungarian</option>
+        <option value="ro">Romanian</option>
+        <option value="ms">Malay</option>
+    </select>
+</div>
+
+<script>
+// Translations
+const translations = {
+    en: { username:"Username, phone or email", password:"Password", loginBtn:"Log In", orText:"OR", fbLogin:"Log in with Facebook", forgotPwd:"Forgot password?", signupText:"Don’t have an account?", signupBtn:"Sign up" },
+    hi: { username:"यूज़रनेम, फोन या ईमेल", password:"पासवर्ड", loginBtn:"लॉग इन करें", orText:"या", fbLogin:"फेसबुक से लॉग इन करें", forgotPwd:"पासवर्ड भूल गए?", signupText:"खाता नहीं है?", signupBtn:"साइन अप" },
+    es: { username:"Nombre de usuario, teléfono o correo", password:"Contraseña", loginBtn:"Iniciar sesión", orText:"O", fbLogin:"Iniciar sesión con Facebook", forgotPwd:"¿Olvidaste tu contraseña?", signupText:"¿No tienes una cuenta?", signupBtn:"Regístrate" },
+    fr: { username:"Nom d'utilisateur, téléphone ou email", password:"Mot de passe", loginBtn:"Se connecter", orText:"OU", fbLogin:"Se connecter avec Facebook", forgotPwd:"Mot de passe oublié ?", signupText:"Pas de compte ?", signupBtn:"S'inscrire" },
+    de: { username:"Benutzername, Telefon oder E-Mail", password:"Passwort", loginBtn:"Anmelden", orText:"ODER", fbLogin:"Mit Facebook anmelden", forgotPwd:"Passwort vergessen?", signupText:"Noch keinen Account?", signupBtn:"Registrieren" },
+    it: { username:"Nome utente, telefono o email", password:"Password", loginBtn:"Accedi", orText:"O", fbLogin:"Accedi con Facebook", forgotPwd:"Password dimenticata?", signupText:"Non hai un account?", signupBtn:"Iscriviti" },
+    pt: { username:"Nome de usuário, telefone ou email", password:"Senha", loginBtn:"Entrar", orText:"OU", fbLogin:"Entrar com Facebook", forgotPwd:"Esqueceu a senha?", signupText:"Não tem uma conta?", signupBtn:"Inscreva-se" },
+    ru: { username:"Имя пользователя, телефон или email", password:"Пароль", loginBtn:"Войти", orText:"ИЛИ", fbLogin:"Войти через Facebook", forgotPwd:"Забыли пароль?", signupText:"Нет аккаунта?", signupBtn:"Регистрация" },
+    "zh-CN": { username:"用户名、手机号或邮箱", password:"密码", loginBtn:"登录", orText:"或", fbLogin:"使用Facebook登录", forgotPwd:"忘记密码？", signupText:"还没有账户？", signupBtn:"注册" },
+    "zh-TW": { username:"用戶名、手機號或郵箱", password:"密碼", loginBtn:"登入", orText:"或", fbLogin:"使用Facebook登入", forgotPwd:"忘記密碼？", signupText:"還沒有帳號？", signupBtn:"註冊" },
+    ja: { username:"ユーザー名、電話番号またはメール", password:"パスワード", loginBtn:"ログイン", orText:"または", fbLogin:"Facebookでログイン", forgotPwd:"パスワードをお忘れですか？", signupText:"アカウントをお持ちでないですか？", signupBtn:"サインアップ" },
+    ko: { username:"사용자 이름, 전화번호 또는 이메일", password:"비밀번호", loginBtn:"로그인", orText:"또는", fbLogin:"Facebook으로 로그인", forgotPwd:"비밀번호를 잊으셨나요?", signupText:"계정이 없으신가요?", signupBtn:"가입" },
+    ar: { username:"اسم المستخدم أو الهاتف أو البريد الإلكتروني", password:"كلمة المرور", loginBtn:"تسجيل الدخول", orText:"أو", fbLogin:"تسجيل الدخول عبر فيسبوك", forgotPwd:"نسيت كلمة المرور؟", signupText:"ليس لديك حساب؟", signupBtn:"سجل الآن" },
+    tr: { username:"Kullanıcı adı, telefon veya e-posta", password:"Şifre", loginBtn:"Giriş Yap", orText:"VEYA", fbLogin:"Facebook ile giriş yap", forgotPwd:"Şifrenizi mi unuttunuz?", signupText:"Hesabınız yok mu?", signupBtn:"Kayıt Ol" },
+    vi: { username:"Tên đăng nhập, số điện thoại hoặc email", password:"Mật khẩu", loginBtn:"Đăng nhập", orText:"HOẶC", fbLogin:"Đăng nhập với Facebook", forgotPwd:"Quên mật khẩu?", signupText:"Chưa có tài khoản?", signupBtn:"Đăng ký" },
+    th: { username:"ชื่อผู้ใช้, เบอร์โทร หรืออีเมล", password:"รหัสผ่าน", loginBtn:"เข้าสู่ระบบ", orText:"หรือ", fbLogin:"เข้าสู่ระบบด้วย Facebook", forgotPwd:"ลืมรหัสผ่าน?", signupText:"ไม่มีบัญชี?", signupBtn:"สมัคร" },
+    id: { username:"Nama pengguna, telepon atau email", password:"Kata sandi", loginBtn:"Masuk", orText:"ATAU", fbLogin:"Masuk dengan Facebook", forgotPwd:"Lupa kata sandi?", signupText:"Belum punya akun?", signupBtn:"Daftar" },
+    sv: { username:"Användarnamn, telefon eller e-post", password:"Lösenord", loginBtn:"Logga in", orText:"ELLER", fbLogin:"Logga in med Facebook", forgotPwd:"Glömt lösenord?", signupText:"Har du inget konto?", signupBtn:"Registrera" },
+    nl: { username:"Gebruikersnaam, telefoon of e-mail", password:"Wachtwoord", loginBtn:"Inloggen", orText:"OF", fbLogin:"Inloggen met Facebook", forgotPwd:"Wachtwoord vergeten?", signupText:"Geen account?", signupBtn:"Aanmelden" },
+    el: { username:"Όνομα χρήστη, τηλέφωνο ή email", password:"Κωδικός", loginBtn:"Σύνδεση", orText:"Ή", fbLogin:"Σύνδεση με Facebook", forgotPwd:"Ξεχάσατε τον κωδικό;", signupText:"Δεν έχετε λογαριασμό;", signupBtn:"Εγγραφή" },
+    pl: { username:"Nazwa użytkownika, telefon lub email", password:"Hasło", loginBtn:"Zaloguj się", orText:"LUB", fbLogin:"Zaloguj przez Facebook", forgotPwd:"Nie pamiętasz hasła?", signupText:"Nie masz konta?", signupBtn:"Zarejestruj się" },
+    he: { username:"שם משתמש, טלפון או אימייל", password:"סיסמה", loginBtn:"התחברות", orText:"או", fbLogin:"התחבר עם פייסבוק", forgotPwd:"שכחת סיסמה?", signupText:"אין לך חשבון?", signupBtn:"הרשם" },
+    no: { username:"Brukernavn, telefon eller e-post", password:"Passord", loginBtn:"Logg inn", orText:"ELLER", fbLogin:"Logg inn med Facebook", forgotPwd:"Glemt passord?", signupText:"Har du ikke konto?", signupBtn:"Registrer" },
+    fi: { username:"Käyttäjänimi, puhelin tai sähköposti", password:"Salasana", loginBtn:"Kirjaudu sisään", orText:"TAI", fbLogin:"Kirjaudu Facebookilla", forgotPwd:"Unohditko salasanan?", signupText:"Ei tiliä?", signupBtn:"Rekisteröidy" },
+    da: { username:"Brugernavn, telefon eller e-mail", password:"Adgangskode", loginBtn:"Log ind", orText:"ELLER", fbLogin:"Log ind med Facebook", forgotPwd:"Glemt adgangskode?", signupText:"Har du ikke en konto?", signupBtn:"Tilmeld" },
+    cs: { username:"Uživatelské jméno, telefon nebo email", password:"Heslo", loginBtn:"Přihlásit se", orText:"NEBO", fbLogin:"Přihlásit se přes Facebook", forgotPwd:"Zapomenuté heslo?", signupText:"Nemáte účet?", signupBtn:"Zaregistrovat se" },
+    hu: { username:"Felhasználónév, telefon vagy e-mail", password:"Jelszó", loginBtn:"Bejelentkezés", orText:"VAGY", fbLogin:"Bejelentkezés Facebookkal", forgotPwd:"Elfelejtette a jelszót?", signupText:"Nincs fiókja?", signupBtn:"Regisztráció" },
+    ro: { username:"Nume utilizator, telefon sau email", password:"Parolă", loginBtn:"Autentificare", orText:"SAU", fbLogin:"Autentificare cu Facebook", forgotPwd:"Ai uitat parola?", signupText:"Nu ai cont?", signupBtn:"Înregistrează-te" },
+    ms: { username:"Nama pengguna, telefon atau e-mel", password:"Kata laluan", loginBtn:"Log Masuk", orText:"ATAU", fbLogin:"Log masuk dengan Facebook", forgotPwd:"Lupa kata laluan?", signupText:"Tiada akaun?", signupBtn:"Daftar" }
+};
+
+// Update function
+const updateLanguage = lang => {
+    document.getElementById('username').placeholder = translations[lang].username;
+    document.getElementById('password').placeholder = translations[lang].password;
+    document.getElementById('loginBtn').textContent = translations[lang].loginBtn;
+    document.getElementById('orText').textContent = translations[lang].orText;
+    document.getElementById('fbLogin').textContent = translations[lang].fbLogin;
+    document.getElementById('forgotPwd').textContent = translations[lang].forgotPwd;
+    document.getElementById('signupText').firstChild.textContent = translations[lang].signupText + " ";
+    document.getElementById('signupBtn').textContent = translations[lang].signupBtn;
+};
+
+// Event listener
+document.getElementById('languageSelector').addEventListener('change', e => {
+    updateLanguage(e.target.value);
+});
+</script>
+
+</body>
+</html>
